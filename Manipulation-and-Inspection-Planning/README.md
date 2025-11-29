@@ -416,6 +416,24 @@ results/inspection-planning/
 
 ---
 
+## Example Visualizations
+
+**Motion Planning Example:**
+![E2 Motion Planning - Cost 210.13, Time 11.32s](results/motion-planning/E2%200.05_cost%20210.13%20time%2011.32.gif)
+- **File:** `results/motion-planning/E2 0.05_cost 210.13 time 11.32.gif`
+- **Configuration:** E2 extension mode, goal bias 5%
+- **Result:** Cost 210.13, Computation time 11.32s
+- **Shows:** Balanced tree growth with smooth path convergence
+
+**Inspection Planning Example:**
+![E2 Inspection Planning - 75% Coverage, Time 79.30s](results/inspection-planning/E2_0.05_cost%20360.80%20time%2079.30.gif)
+- **File:** `results/inspection-planning/E2_0.05_cost 360.80 time 79.30.gif`
+- **Configuration:** E2 extension mode, 75% coverage target
+- **Result:** Coverage ratio 75%, Cost 360.80, Computation time 79.30s
+- **Shows:** Coverage region expansion with visibility polygon computation
+
+---
+
 ## Files
 
 - `RRTMotionPlanner.py` - Multi-target motion planning implementation
@@ -425,7 +443,6 @@ results/inspection-planning/
 - `RRTTree.py` - Tree data structure for node management
 - `run.py` - Main execution script with visualization
 - `assignment.pdf` - Full problem specification
-- `report.pdf` - Solution report with detailed results
 - `data/maps/` - Problem scenario definitions
   - `map_mp.json` - Motion planning scenario
   - `map_ip.json` - Inspection planning scenario
@@ -455,26 +472,6 @@ python run.py --task inspection_planning --map data/maps/map_ip.json \
 python run.py --task inspection_planning --map data/maps/map_ip.json \
     --coverage 0.75 --extension E2 --max_iterations 5000
 ```
-
----
-
-## References
-
-1. **RRT and Motion Planning:**
-   - LaValle, S. M., & Kuffner, J. J. (2001). "Randomized Kinodynamic Planning."
-   - Karaman, S., & Frazzoli, E. (2011). "Sampling-based Algorithms for Optimal Motion Planning."
-
-2. **Coverage Path Planning:**
-   - Galceran, E., & Carreras, M. (2013). "A survey on coverage path planning for robotics."
-   - Choset, H. (2001). "Coverage for robotics."
-
-3. **Robotic Applications:**
-   - Siciliano, B., et al. (2016). *Robotics: Modelling, Planning and Control*. Springer.
-   - Murray, R. M., Sastry, S. S., & Zexiang, L. (1994). *A Mathematical Introduction to Robotic Manipulation*.
-
-4. **Visibility and Computational Geometry:**
-   - O'Rourke, J. (1987). "Art gallery theorems and algorithms."
-   - De Berg, M., et al. (2008). *Computational Geometry: Algorithms and Applications*.
 
 ---
 

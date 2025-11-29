@@ -263,24 +263,10 @@ Methods:
 - `HW1.py` - Main implementation (Minkowski sum, visibility graph, Dijkstra)
 - `Plotter.py` - Visualization utilities
 - `assignment.pdf` - Full problem statement with formal specifications
+- `report.pdf` - Solution report with results and analysis
 - `data/robot/` - Robot configuration files
 - `data/obstacles/` - Obstacle definitions
 - `data/query/` - Query (start/goal) positions
-
----
-
-## References
-
-1. **Computational Geometry:**
-   - De Berg, M., Cheong, O., van Kreveld, M., & Overmars, M. (2008). *Computational Geometry: Algorithms and Applications*. Springer.
-   - Latombe, J. C. (1991). *Robot Motion Planning*. Kluwer Academic Publishers.
-
-2. **Geometric Algorithms:**
-   - O'Rourke, J. (1998). *Computational Geometry in C* (2nd ed.). Cambridge University Press.
-
-3. **Graph Algorithms:**
-   - Dijkstra, E. W. (1959). "A note on two problems in connexion with graphs."
-   - Russell, S., & Norvig, P. (2020). *Artificial Intelligence: A Modern Approach* (4th ed.). Chapter 3-4.
 
 ---
 

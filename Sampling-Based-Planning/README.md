@@ -410,22 +410,6 @@ python run.py --map data/maps/map2.json --planner rrtstar --ext_mode E2 --goal_p
 
 ---
 
-## References
-
-1. **A\* and Heuristic Search:**
-   - Hart, P. E., Nilsson, N. J., & Raphael, B. (1968). "A Formal Basis for the Heuristic Determination of Minimum Cost Paths."
-   - Russell, S., & Norvig, P. (2020). *Artificial Intelligence: A Modern Approach* (4th ed.). Chapter 3-4.
-
-2. **RRT and Sampling-Based Planning:**
-   - LaValle, S. M., & Kuffner, J. J. (2001). "Randomized Kinodynamic Planning."
-   - LaValle, S. M. (2006). *Planning Algorithms*. Cambridge University Press.
-
-3. **RRT\* and Optimal Motion Planning:**
-   - Karaman, S., & Frazzoli, E. (2011). "Sampling-based Algorithms for Optimal Motion Planning."
-   - Karaman, S., et al. (2011). "Anytime Motion Planning via the RRT*."
-
----
-
 **Status:** ✅ Complete with comprehensive analysis
 **Last Updated:** 2025
 **Topics:** Path Planning, Heuristic Search, Sampling-Based Algorithms, Asymptotic Optimality
