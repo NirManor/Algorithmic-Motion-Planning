@@ -1,7 +1,8 @@
-# Algorithmic Robot Motion Planning (236901)
+# Algorithmic Robot Motion Planning
 
 **Technion - Israel Institute of Technology**
-**Course:** Advanced Robotics & Autonomous Systems
+**Course Code:** 236767
+**Faculty:** Computer Science
 **Student:** Nir Manor
 **Period:** 2023-2024
 
@@ -411,8 +412,9 @@ python3 run.py --task inspection_planning --map data/maps/map_ip.json --coverage
 ## Course Information
 
 **Institution:** Technion - Israel Institute of Technology
-**Course Code:** 236901
-**Instructor:** [Course Instructor Name]
+**Faculty:** Computer Science
+**Course Code:** 236767
+**Course Title:** Algorithmic Robot Motion Planning
 **Semester:** Fall 2023
 **Credits:** 3
 

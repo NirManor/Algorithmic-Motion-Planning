@@ -1,4 +1,4 @@
-### Algorithmic Robot Motion Planning — Instructor: [Department], Fall 2023
+### Algorithmic Robot Motion Planning — Technion Computer Science (236767), Fall 2023
 
 **Course snapshot:**
 Algorithmic Robot Motion Planning covers three complementary motion planning paradigms across exact, sampling-based, and application-specific domains. HW1 applies computational geometry (Minkowski sums, visibility graphs) for deterministic obstacle avoidance in 2D polygonal environments. HW2 implements grid-based search (A*) and sampling-based planners (RRT, RRT*) for high-dimensional configuration spaces, with systematic parameter studies on algorithm trade-offs. HW3 applies these techniques to real-world robotic manipulation and inspection tasks, optimizing for both path quality and task completion. All implementations emphasize algorithm analysis, experimental validation, and visualization of planning processes.
