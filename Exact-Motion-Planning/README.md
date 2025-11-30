@@ -81,20 +81,43 @@ Dijkstra's algorithm initializes start distance to 0 with all others set to infi
 - Optimality guaranteed on visibility graphs
 - Efficient for multiple queries on same environment
 
+---
 
-**File:** `Plotter.py`
+## Algorithm Visualizations
 
-Visualization utilities for displaying:
-- Original obstacles and robot
-- C-space expanded obstacles
-- Visibility graph structure
-- Final collision-free path
+### Step 1: Configuration Space (C-Space) with Minkowski Sum
 
-Methods:
-- `add_obstacles()` - Plot original environment
-- `add_c_space_obstacles()` - Show inflated obstacles
-- `add_visibility_graph()` - Display roadmap
-- `add_shortest_path()` - Show optimal solution
+The first step transforms the workspace by inflating obstacles with the robot's shape. The diamond-shaped robot (shown in green) becomes a point, and each obstacle is expanded by the robot's dimensions (shown as pink Minkowski sum regions):
+
+![C-Space Obstacles](figures/cspace_obstacles_input.png)
+*Configuration space showing inflated obstacles (pink regions) created by Minkowski sum of original obstacles with the diamond robot shape*
+
+---
+
+### Step 2: Visibility Graph Construction
+
+The visibility graph connects all vertices (obstacle corners and start/goal) that can "see" each other without crossing obstacles. Dashed lines represent valid edges in the roadmap:
+
+![Visibility Graph](figures/visibility_graph_input.png)
+*Visibility graph (dashed lines) showing all collision-free edges connecting obstacle vertices, start position, and goal position in configuration space*
+
+---
+
+### Step 3: Optimal Path via Dijkstra's Algorithm
+
+Finally, Dijkstra's algorithm finds the shortest path through the visibility graph. The yellow/green line shows the optimal trajectory from start to goal:
+
+![Shortest Path Solution](figures/shortest_path_input.png)
+*Optimal collision-free path (highlighted in yellow) computed by Dijkstra's algorithm, navigating around obstacles via the visibility graph*
+
+---
+
+### Edge Case: Non-Convex Obstacles
+
+While the algorithm assumes convex obstacles, this visualization demonstrates the challenge with non-convex shapes. Incorrect Minkowski sum calculations can lead to invalid obstacle expansions:
+
+![Non-Convex Problem](figures/non_convex_problem.png)
+*Illustration of the non-convex obstacle problem: Simple Minkowski sum fails for non-convex shapes, requiring polygon decomposition*
 
 ---
 
