@@ -1,19 +1,26 @@
-# Algorithmic Robot Motion Planning - From Theory to Application
+# Algorithmic Robot Motion Planning - Course Projects
 
-**Course Number:** 236767 | **Technion** | **Fall 2023** | **Instructor:** Prof. Hadas Kress-Gazit
+Complete implementations of motion planning algorithms covering exact, sampling-based, and application-specific planning paradigms with comprehensive documentation and experimental results.
 
-Complete implementations of motion planning spanning three paradigms: **exact geometric planning** (Minkowski sums, visibility graphs, Dijkstra), **sampling-based planning** (RRT, RRT*, A*), and **application-specific planning** (multi-target manipulation, coverage-aware inspection). Demonstrates theoretical rigor through complexity analysis and empirical validation through experimental results.
+## Course Information
 
-## What You Can Claim After This Course
+- **Course Number:** 236767
+- **Course Name:** Algorithmic Robot Motion Planning
+- **Institution:** Technion - Israel Institute of Technology
+- **Faculty:** Computer Science
+- **Semester:** Fall 2023
+- **Language:** Python 3
 
-- **Compute configuration space** via Minkowski sums for arbitrary robot-obstacle pairs; reason about footprint and inflation in C-space
-- **Build optimal roadmaps** using visibility graphs with rigorous O(n²·m²) complexity analysis
-- **Implement and optimize** Dijkstra's shortest path algorithm for multi-query planning scenarios
-- **Design and tune sampling-based planners** (RRT, RRT*) with parameter sensitivity analysis (goal bias, k-nearest, step size)
-- **Compare planning paradigms empirically:** exact methods guarantee optimality with preprocessing cost vs. sampling-based methods scale to high dimensions
-- **Analyze performance trade-offs** between solution quality, computation time, and memory usage across algorithm families
-- **Extend core algorithms** to task-specific constraints: multi-target reaching, coverage planning under sensor range limitations
-- **Validate algorithms experimentally** with statistical rigor (10+ runs per configuration, convergence curves, robustness under perturbation)
+---
+
+## Repository Overview
+
+This repository contains practical implementations of core motion planning concepts with a focus on:
+- Exact motion planning using computational geometry
+- Sampling-based planning with probabilistic completeness
+- Advanced application planning for robotic manipulation and inspection tasks
+
+All implementations emphasize algorithmic understanding, mathematical rigor, and practical application to real-world robotics problems.
 
 ---
 
@@ -322,35 +329,12 @@ python run.py --task inspection_planning --map data/maps/map_ip.json --coverage 
 
 ---
 
-## How This Connects to Your Target Roles
-
-### Autonomous Driving
-- **Exact vs. Sampling-based trade-offs:** Road networks (visibility graphs) guarantee optimal routes with preprocessing; RRT* provides faster planning in dynamic urban environments (newly detected obstacles)
-- **Configuration space reasoning:** Vehicle motion planning in narrow corridors (Minkowski sum inflation by vehicle footprint) is critical for highway merging and parking automation
-- **Parameter tuning:** RRT* goal bias and k-nearest neighbors directly apply to cost functions for vehicle behavior (aggressive goal-seeking vs. conservative exploration of uncertain scenarios)
-- **Real-time constraints:** A* with ε weighting enables fast near-optimal planning for trajectory replanning every 100ms when new obstacles appear
-
-### Robotics & Manipulation
-- **Multi-DOF planning:** Manipulation tasks require planning in 6-DOF configuration space (UR5e arm)—sampling-based methods scale where exact methods become infeasible
-- **Collision avoidance:** Minkowski sum computation for gripper + object payload enables safe planning around delicate items or human collaborators
-- **Task composition:** Multi-target reaching (pick part A, place at destination B, pick part C) sequences planner calls—learned how to compose basic motion planning into complex task achievement
-- **Real-world validation:** This course bridges simulation to hardware—understanding why theoretical guarantees fail in practice (asynchronous gripper, sensor delays)
-
-### Industrial Automation & Path Optimization
-- **Preprocessing for multiple queries:** Visibility graph preprocessing pays off in production environments where you plan 1000s of paths in same workspace (e.g., warehouse picking)
-- **Scalability analysis:** Your experimental results (RRT* with different k values) directly inform deployment decisions: spend 10ms more planning to reduce path cost by 15%?
-- **Robustness under uncertainty:** Understanding RRT's probabilistic completeness (might fail 1% of time in adversarial narrow passages) is essential for system reliability engineering
-- **Sensor integration:** Coverage planning under range limitations applies to inspections (using camera with FOV limits) or cleaning (using robot with limited reach)
-
----
-
 ## License
 
-Educational use. Course materials property of Technion - Israel Institute of Technology.
+Educational use. Course materials property of Technion.
 
 ---
 
 **Repository:** https://github.com/NirManor/Algorithmic-Motion-Planning
 **Last Updated:** 2025
-**Status:** Complete implementations with comprehensive analysis
-**Portfolio Value:** Demonstrates mastery of motion planning pipeline from mathematical foundations through empirical validation to real-world application understanding
+**Status:** Complete implementations with comprehensive documentation
