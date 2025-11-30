@@ -46,37 +46,7 @@ Two complementary planning problems demonstrating advanced motion planning techn
 
 **Purpose:** Find collision-free paths for reaching multiple targets with cost optimization
 
-**Algorithm:**
-```
-MotionPlanner = RRT variant for multi-target navigation
-
-Initialize:
-    - Tree with current robot position as root
-    - Target list: [T1, T2, ..., Tn]
-    - Current target = T1
-
-Loop until all targets reached:
-    1. Sampling Strategy:
-       - With probability p_goal: sample current target
-       - Else: uniform random sampling
-
-    2. Tree Extension:
-       - Find nearest node in tree
-       - Extend toward sample (E1 or E2 mode)
-       - Add to tree if collision-free
-
-    3. Target Reaching:
-       - If new node is close to current target:
-           * Mark target as reached
-           * Move current target to next target
-           * Continue planning from new node
-
-    4. Path Cost Tracking:
-       - Accumulate edge costs along path
-       - Optimize cost through parameter tuning
-
-Return: Complete path visiting all targets
-```
+RRT for multi-target navigation builds a tree from the robot's current position, iteratively sampling and extending toward random points or the current target (biased by goal probability). When a new node reaches the current target, it becomes the start for planning to the next target. This process repeats until all targets are visited, accumulating costs along the complete path.
 
 **Extension Modes:**
 
@@ -103,41 +73,7 @@ Return: Complete path visiting all targets
 
 **Purpose:** Plan collision-free paths covering target regions within sensor range
 
-**Algorithm:**
-```
-InspectionPlanner = RRT with coverage constraints
-
-Initialize:
-    - Tree with robot position as root
-    - Target region for coverage
-    - Sensor range: R_sensor
-    - Coverage threshold: target_coverage %
-    - Covered area: ∅
-
-Loop until coverage_ratio ≥ target_coverage:
-    1. Sampling Strategy:
-       - Option A: Uniform random sampling
-       - Option B: Preferential sampling from uncovered regions
-       - Option C: Adaptive coverage-aware sampling
-
-    2. Tree Extension:
-       - Find nearest node in tree
-       - Extend toward sample (E1 or E2 mode)
-       - If collision-free:
-           * Add node to tree
-           * Compute visibility polygon at node
-           * Add newly visible regions to covered_area
-
-    3. Coverage Evaluation:
-       - coverage_ratio = |covered_area| / |target_area|
-       - If coverage_ratio ≥ target_coverage: FOUND
-
-    4. Path Efficiency:
-       - Extract path minimizing distance
-       - Use node ordering for efficient coverage
-
-Return: Path achieving coverage constraint
-```
+RRT for inspection planning builds a tree from the robot's starting position with coverage constraints. The algorithm iteratively samples points (uniformly, from uncovered regions, or adaptively), extends the tree, and computes visibility polygons at each node. The process continues until the coverage ratio meets the target threshold, with path efficiency optimized through node ordering.
 
 **Coverage Computation:**
 - **Visibility Polygon:** Region visible from robot position within sensor range
@@ -152,107 +88,6 @@ Return: Path achieving coverage constraint
 | **Random** | Uniform sampling | Simple, general | Low |
 | **Greedy** | Target uncovered regions | Fast coverage | Medium |
 | **Adaptive** | Online coverage assessment | High effectiveness | High |
-
----
-
-## Code Structure
-
-### RRTMotionPlanner.py
-```python
-class RRTMotionPlanner:
-    def __init__(self, environment, robot, targets):
-        self.tree = RRTTree(robot.start_position)
-        self.targets = targets
-        self.current_target_idx = 0
-
-    def plan(self, goal_bias=0.05, extension_mode='E2', max_iterations=5000):
-        """
-        Plan collision-free multi-target motion.
-
-        Args:
-            goal_bias: Probability of sampling current target
-            extension_mode: 'E1' (direct) or 'E2' (step-limited)
-            max_iterations: Maximum planning iterations
-
-        Returns:
-            Path visiting all targets in sequence
-        """
-        # Multi-target RRT planning
-        pass
-
-    def get_path_cost(self):
-        """Compute total path distance."""
-        pass
-```
-
-### RRTInspectionPlanner.py
-```python
-class RRTInspectionPlanner:
-    def __init__(self, environment, robot, target_region):
-        self.tree = RRTTree(robot.start_position)
-        self.target_region = target_region
-        self.covered_area = set()
-
-    def plan(self, target_coverage=0.75, extension_mode='E2', max_iterations=5000):
-        """
-        Plan collision-free coverage path.
-
-        Args:
-            target_coverage: Coverage ratio threshold (0.0-1.0)
-            extension_mode: 'E1' (direct) or 'E2' (step-limited)
-            max_iterations: Maximum planning iterations
-
-        Returns:
-            Path achieving coverage constraint
-        """
-        # Coverage-aware RRT planning
-        pass
-
-    def compute_visibility_polygon(self, position):
-        """Compute visible region from position within sensor range."""
-        pass
-
-    def update_covered_area(self, new_node):
-        """Update covered area with visibility from new node."""
-        pass
-
-    def get_coverage_ratio(self):
-        """Return current coverage percentage."""
-        pass
-```
-
-### Robot.py
-```python
-class Robot:
-    def __init__(self, start_position, sensor_range, size):
-        self.position = start_position
-        self.sensor_range = sensor_range
-        self.size = size
-
-    def can_reach_position(self, target):
-        """Check if robot can reach target from current position."""
-        pass
-
-    def compute_visibility(self, obstacles):
-        """Compute visible region from current position."""
-        pass
-```
-
-### MapEnvironment.py
-```python
-class MapEnvironment:
-    def __init__(self, obstacles, target_region=None):
-        self.obstacles = obstacles
-        self.target_region = target_region
-
-    def is_collision_free(self, start, end):
-        """Check if path from start to end is collision-free."""
-        pass
-
-    def get_visible_area(self, position, sensor_range):
-        """Compute visibility polygon from position with given range."""
-        pass
-```
 
 ---
 
@@ -443,6 +278,7 @@ results/inspection-planning/
 - `RRTTree.py` - Tree data structure for node management
 - `run.py` - Main execution script with visualization
 - `assignment.pdf` - Full problem specification
+- `HW3_Report.pdf` - Comprehensive project report with detailed analysis and results
 - `data/maps/` - Problem scenario definitions
   - `map_mp.json` - Motion planning scenario
   - `map_ip.json` - Inspection planning scenario

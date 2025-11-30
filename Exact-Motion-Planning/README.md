@@ -26,13 +26,7 @@ Navigate a **diamond-shaped robot** (axis-aligned square rotated 45°) translati
 
 **Purpose:** Transform collision-avoidance problem into point-robot navigation
 
-**Algorithm:**
-```
-For each obstacle O:
-  1. Compute Minkowski sum of obstacle with robot shape
-  2. Result is expanded obstacle in C-space
-  3. Point-robot navigating in C-space ↔ actual robot navigating in workspace
-```
+The Minkowski sum of each obstacle with the robot shape creates an expanded obstacle in configuration space. This transforms the problem of a robot of size navigating in the original space into a point robot navigating in the expanded space.
 
 **Mathematical Foundation:**
 - Minkowski sum: O ⊕ R = {o + r | o ∈ O, r ∈ R}
@@ -53,14 +47,7 @@ Expanding obstacles by robot shape converts the motion planning problem from a r
 
 **Purpose:** Build compact roadmap connecting start, goal, and obstacle vertices
 
-**Algorithm:**
-```
-Vertices = {start, goal} ∪ {all obstacle vertices}
-
-For each pair of vertices (u, v):
-  1. Test if straight line connecting u and v intersects any obstacle
-  2. If clear, add edge (u, v) with cost = Euclidean distance
-```
+The visibility graph includes the start and goal vertices along with all obstacle vertices. For each pair of vertices, the algorithm tests if a straight line connecting them intersects any obstacle. If clear, an edge is added with cost equal to the Euclidean distance.
 
 **Preprocessing Complexity:** O(n²·m²)
 - n² vertex pairs
@@ -82,13 +69,7 @@ For each pair of vertices (u, v):
 
 **Purpose:** Find minimum-cost path from start to goal on visibility graph
 
-**Algorithm:**
-```
-1. Initialize distances: dist[start] = 0, all others = ∞
-2. Use priority queue ordered by distance
-3. Repeatedly extract minimum-distance vertex and relax neighbors
-4. Backtrack from goal to start using parent pointers
-```
+Dijkstra's algorithm initializes start distance to 0 with all others set to infinity, then repeatedly extracts the minimum-distance vertex and relaxes its neighbors. Path reconstruction follows parent pointers from goal back to start, guaranteeing optimality on the visibility graph.
 
 **Complexity:** O((V+E)log V)
 - V = visibility graph vertices (obstacle vertices + 2)
@@ -100,54 +81,6 @@ For each pair of vertices (u, v):
 - Optimality guaranteed on visibility graphs
 - Efficient for multiple queries on same environment
 
----
-
-## Code Structure
-
-**File:** `HW1.py`
-
-```python
-def get_minkowsky_sum(original_shape: Polygon, r: float) -> Polygon:
-    """
-    Compute Minkowski sum of obstacle with robot shape.
-
-    Args:
-        original_shape: Obstacle polygon
-        r: Robot radius (diamond half-diagonal)
-
-    Returns:
-        Inflated obstacle polygon in C-space
-    """
-    pass
-
-def get_visibility_graph(obstacles: List[Polygon], source=None, dest=None) -> List[LineString]:
-    """
-    Build visibility graph: edges between vertices with no intersections.
-
-    Args:
-        obstacles: List of convex obstacle polygons
-        source: Start position (optional)
-        dest: Goal position (optional)
-
-    Returns:
-        List of collision-free edges forming the roadmap
-    """
-    pass
-
-def dijkstra_shortest_path(graph, start, goal) -> List[Point]:
-    """
-    Find optimal path on visibility graph.
-
-    Args:
-        graph: Visibility graph with weighted edges
-        start: Start position
-        goal: Goal position
-
-    Returns:
-        Optimal collision-free path as list of points
-    """
-    pass
-```
 
 **File:** `Plotter.py`
 
